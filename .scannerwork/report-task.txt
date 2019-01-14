@@ -1,0 +1,6 @@
+projectKey=javascript-prj
+serverUrl=http://10.211.62.227:9001
+serverVersion=7.1.0.11001
+dashboardUrl=http://10.211.62.227:9001/dashboard/index/javascript-prj
+ceTaskId=AWg33iKvsedFb20qfmBr
+ceTaskUrl=http://10.211.62.227:9001/api/ce/task?id=AWg33iKvsedFb20qfmBr

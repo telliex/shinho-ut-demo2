@@ -1,113 +1,94 @@
+
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+  <div>
+    <table>
+      <tr>
+        <td>1st</td>
+        <td>
+          <input type="number" v-model.number="scores.firstSection">
+        </td>
+      </tr>
+      <tr>
+        <td>2st</td>
+        <td>
+          <input type="number" v-model.number="scores.twoSection">
+        </td>
+      </tr>
+      <tr>
+        <td>3st</td>
+        <td>
+          <input type="number" v-model.number="scores.threeSection">
+        </td>
+      </tr>
+      <tr>
+        <td>4st</td>
+        <td>
+          <input type="number" v-model.number="scores.fourSection">
+        </td>
+      </tr>
+      <tr>
+        <td>extend</td>
+        <td>
+          <input type="number" v-model.number="scores.extendSection">
+        </td>
+      </tr>
+      <tr>
+        <td>total</td>
+        <td>
+          <input type="number" v-model.number="total">
+        </td>
+      </tr>
+    </table>
+    <input type="button" value="submit" @click="submit">
   </div>
 </template>
-
 <script>
+import _ from 'lodash'
+// 兩数相减的正数值
+function mathDistance (num1, num2) {
+  return num2 > num1 ? num2 - num1 : num1 - num2
+}
 export default {
-  name: 'HelloWorld',
+  name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      scores: {
+        firstSection: 0,
+        twoSection: 0,
+        threeSection: 0,
+        fourSection: 0,
+        extendSection: 0
+      },
+      cloneScores: {}
     }
+  },
+  computed: {
+    total () {
+      return this.scores.firstSection + this.scores.twoSection + this.scores.threeSection +
+        this.scores.fourSection + this.scores.extendSection
+    }
+  },
+  methods: {
+    submit () {
+      let scores = this.scores
+      let modifedObject = _.reduce(this.cloneScores, function (result, value, key) {
+        return _.isEqual(value, scores[key]) ? result : result.concat(key)
+      }, [])
+      let isDistanceScore = false
+      modifedObject.forEach(property => {
+        if (mathDistance(this.cloneScores[property], scores[property]) > 1) {
+          isDistanceScore = true
+        }
+      })
+      if (isDistanceScore) alert('只能增加或減少一分')
+      if (modifedObject.length > 1) alert('只能更新一節的分數')
+    }
+  },
+  created () {
+    this.cloneScores = { ...this.scores }
   }
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
 </style>
