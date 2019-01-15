@@ -1,0 +1,3 @@
+report: >-
+  --run --format html --browser Chrome --out
+  /Users/telliex/Desktop/front-end-test-demo/test/e2e/reports

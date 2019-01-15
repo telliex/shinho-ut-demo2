@@ -22,3 +22,4 @@ Then(/^the Google search form exists$/, () => {
 Then(/^the DuckDuckGo search form exists$/, () => {
   return client.assert.visible('input[name="q"]')
 })
+

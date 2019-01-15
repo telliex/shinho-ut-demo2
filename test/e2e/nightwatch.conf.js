@@ -1,6 +1,6 @@
 require('babel-register')
 require('nightwatch-cucumber')({
-  // cucumber 参数
+// cucumber 参数
   cucumberArgs: [
     '--require',
     'test/e2e/features/step_definitions',
@@ -12,9 +12,11 @@ require('nightwatch-cucumber')({
   ]
 })
 const seleniumServer = require('selenium-server')
+const phantomjs = require('phantomjs-prebuilt')
 const chromedriver = require('chromedriver') // chrome
 const geckodriver = require('geckodriver') // firefox
 const config = require('../../config') // http://nightwatchjs.org/gettingstarted#settings-file
+
 module.exports = {
   src_folders: ['test/e2e/features/step_definitions'],
   output_folder: 'test/e2e/reports',
@@ -74,6 +76,15 @@ module.exports = {
         cli_args: {
           'webdriver.gecko.driver': geckodriver.path
         }
+      }
+    },
+    phantom: {
+      desiredCapabilities: {
+        browserName: 'phantomjs',
+        javascriptEnabled: true,
+        acceptSslCerts: true,
+        'phantomjs.page.settings.userAgent': 'Mozilla/5.0 (Macintosh; Intel MacOS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36',
+        'phantomjs.binary.path': phantomjs.path
       }
     }
   }

@@ -8,12 +8,15 @@
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
-    "e2e": "node test/e2e/runner.js",
+    "e2e": "node test/e2e/runner.js &&  node ./cucumble-html-reports.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "build": "node build/build.js"
   },
   "dependencies": {
+    "cucumber-html-reporter": "^4.0.4",
+    "nightwatch-html-reporter": "^2.0.6",
+    "phantomjs-prebuilt": "^2.1.16",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
