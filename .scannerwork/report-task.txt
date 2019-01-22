@@ -1,6 +1,6 @@
-projectKey=javascript-prj
+projectKey=com.shinho:vuejstest:branch-master
 serverUrl=http://10.211.62.227:9001
 serverVersion=7.1.0.11001
-dashboardUrl=http://10.211.62.227:9001/dashboard/index/javascript-prj
-ceTaskId=AWg33iKvsedFb20qfmBr
-ceTaskUrl=http://10.211.62.227:9001/api/ce/task?id=AWg33iKvsedFb20qfmBr
+dashboardUrl=http://10.211.62.227:9001/dashboard/index/com.shinho:vuejstest:branch-master
+ceTaskId=AWhzD8ULsedFb20qfmCK
+ceTaskUrl=http://10.211.62.227:9001/api/ce/task?id=AWhzD8ULsedFb20qfmCK
