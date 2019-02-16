@@ -12,7 +12,7 @@ describe('Component', () => {
   })
 
   afterEach(() => {
-    alert.mockRestore() // 每次測試完都得restore
+    alert.mockRestore() // 每次測試完都得 restore
   })
 
   test('總分為所有節數加起來的分數', () => {
@@ -28,9 +28,17 @@ describe('Component', () => {
     expect(vm.total).toEqual(11) // 這邊的expect是使用jest的，對我來說很夠用了
   })
 
-  test('不可以加或減超過一分', () => {
+  test('不可以加超過一分', () => {
     vm.scores.firstSection = 2
     vm.submit()
+
+    expect(alert.mock.calls[0][0]).toEqual('只能增加或減少一分')
+  })
+
+  test('不可以減超過一分', () => {
+    vm.scores.twoSection = -2
+    vm.submit()
+
     expect(alert.mock.calls[0][0]).toEqual('只能增加或減少一分')
   })
 

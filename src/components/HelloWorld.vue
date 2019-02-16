@@ -76,7 +76,7 @@ export default {
       }, [])
       let isDistanceScore = false
       modifedObject.forEach(property => {
-        if (mathDistance(this.cloneScores[property], scores[property]) > 1) {
+        if (mathDistance(this.cloneScores[property], this.scores[property]) > 1) {
           isDistanceScore = true
         }
       })
